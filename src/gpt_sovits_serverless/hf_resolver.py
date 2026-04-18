@@ -26,7 +26,7 @@ def validate_relative_path(path: str) -> str:
 def safe_join(root: Path, relative_path: str) -> Path:
     relative = validate_relative_path(relative_path)
     root = root.resolve()
-    candidate = (root / relative).resolve()
+    candidate = root / relative
     if not _is_relative_to(candidate, root):
         raise ConfigurationError(f"Path escapes root: {relative_path!r}")
     return candidate
