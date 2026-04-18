@@ -17,9 +17,9 @@ voice.
     "text_lang": "en",
     "reference_voice": {
       "source": "url",
-      "url": "https://raw.githubusercontent.com/skyil7/gpt-sovits-runpod-serverless/main/examples/reference_mlk_5s.wav",
-      "media_type": "wav",
-      "prompt_text": "I have a dream",
+      "url": "https://raw.githubusercontent.com/skyil7/gpt-sovits-runpod-serverless/main/examples/reference_librispeech_1272-128104-0000.flac",
+      "media_type": "flac",
+      "prompt_text": "MISTER QUILTER IS THE APOSTLE OF THE MIDDLE CLASSES AND WE ARE GLAD TO WELCOME HIS GOSPEL",
       "prompt_lang": "en"
     },
     "aux_reference_voices": [],
