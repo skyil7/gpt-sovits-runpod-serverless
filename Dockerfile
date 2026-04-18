@@ -39,4 +39,11 @@ RUN python -m pip install --upgrade pip setuptools wheel \
     && python -m pip install -r /app/requirements-serverless.txt \
     && python -m pip install -e /app
 
+RUN python - <<'PY'
+import nltk
+
+for resource in ("averaged_perceptron_tagger_eng", "averaged_perceptron_tagger", "cmudict"):
+    nltk.download(resource, quiet=True)
+PY
+
 CMD ["python", "-u", "/app/handler.py"]
