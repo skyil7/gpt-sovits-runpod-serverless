@@ -21,6 +21,7 @@ SUPPORTED_LANGS = {
     "all_ko",
 }
 SUPPORTED_REFERENCE_SOURCES = {"base64", "url", "hf", "path"}
+SUPPORTED_REFERENCE_MEDIA_TYPES = {"wav", "flac", "mp3", "ogg", "aac", "m4a", "webm", "raw"}
 SUPPORTED_CUT_METHODS = {"cut0", "cut1", "cut2", "cut3", "cut4", "cut5"}
 
 
@@ -43,8 +44,10 @@ class ReferenceVoice:
             raise RequestValidationError(f"{role}.source must be one of {sorted(SUPPORTED_REFERENCE_SOURCES)}")
 
         media_type = _string(value.get("media_type", default_media_type), f"{role}.media_type").lower()
-        if media_type not in SUPPORTED_MEDIA_TYPES:
-            raise RequestValidationError(f"{role}.media_type must be one of {sorted(SUPPORTED_MEDIA_TYPES)}")
+        if media_type not in SUPPORTED_REFERENCE_MEDIA_TYPES:
+            raise RequestValidationError(
+                f"{role}.media_type must be one of {sorted(SUPPORTED_REFERENCE_MEDIA_TYPES)}"
+            )
 
         data = value.get("data")
         path = value.get("path")

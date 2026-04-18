@@ -8,7 +8,7 @@
         "reference_voice": {
           "source": "url",
           "url": "https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac",
-          "media_type": "wav",
+          "media_type": "flac",
           "prompt_text": "I have a dream.",
           "prompt_lang": "en"
         },

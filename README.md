@@ -18,7 +18,7 @@ voice.
     "reference_voice": {
       "source": "url",
       "url": "https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac",
-      "media_type": "wav",
+      "media_type": "flac",
       "prompt_text": "I have a dream.",
       "prompt_lang": "en"
     },
@@ -39,6 +39,10 @@ Supported reference sources:
 - `url`: `url` or `data` contains an HTTP(S) audio URL.
 - `hf`: `path` points to a file inside `HF_MODEL_REPO_ID`, or `HF_PRETRAINED_REPO_ID` when no custom repo is set.
 - `path`: local container path. Disabled unless `ALLOW_LOCAL_REFERENCE_PATHS=true`.
+
+Reference audio accepts common input container types such as `wav`, `flac`, `mp3`,
+`ogg`, `aac`, `m4a`, and `webm`. Generated output is controlled separately by
+`generation.media_type`.
 
 Supported languages are GPT-SoVITS v2 languages: `auto`, `auto_yue`, `en`, `zh`,
 `ja`, `yue`, `ko`, `all_zh`, `all_ja`, `all_yue`, and `all_ko`.

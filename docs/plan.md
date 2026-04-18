@@ -212,8 +212,10 @@ Supported `reference_voice.source` values:
 - `hf`: path inside the configured `HF_MODEL_REPO_ID` snapshot.
 - `path`: local path inside the container, intended for advanced deployments.
 
-`aux_reference_voices` follows the same source structure. Each resolved reference
-audio is written to a per-job temp directory and cleaned up after inference.
+`aux_reference_voices` follows the same source structure. Reference audio input can
+use common containers such as `wav`, `flac`, `mp3`, `ogg`, `aac`, `m4a`, and `webm`.
+Each resolved reference audio is written to a per-job temp directory and cleaned up
+after inference.
 
 ## RunPod Response Schema
 
@@ -340,4 +342,3 @@ For longer generation, use object storage output mode and return a URL.
 - Long-running FastAPI server.
 - Multi-version GPT-SoVITS runtime switching.
 - Streaming audio in the first implementation.
-
