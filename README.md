@@ -17,9 +17,9 @@ voice.
     "text_lang": "en",
     "reference_voice": {
       "source": "url",
-      "url": "https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac",
-      "media_type": "flac",
-      "prompt_text": "I have a dream.",
+      "url": "https://raw.githubusercontent.com/skyil7/gpt-sovits-runpod-serverless/main/examples/reference_mlk_5s.wav",
+      "media_type": "wav",
+      "prompt_text": "I have a dream",
       "prompt_lang": "en"
     },
     "aux_reference_voices": [],
@@ -43,6 +43,8 @@ Supported reference sources:
 Reference audio accepts common input container types such as `wav`, `flac`, `mp3`,
 `ogg`, `aac`, `m4a`, and `webm`. Generated output is controlled separately by
 `generation.media_type`.
+
+GPT-SoVITS requires the primary reference audio to be between 3 and 10 seconds.
 
 Supported languages are GPT-SoVITS v2 languages: `auto`, `auto_yue`, `en`, `zh`,
 `ja`, `yue`, `ko`, `all_zh`, `all_ja`, `all_yue`, and `all_ko`.
