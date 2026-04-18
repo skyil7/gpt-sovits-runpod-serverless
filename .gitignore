@@ -19,3 +19,4 @@ runpod-volume/
 models/
 outputs/
 tmp/
+.runpod-*

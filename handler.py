@@ -51,9 +51,12 @@ def handler(event: dict[str, Any]) -> dict[str, Any]:
             },
         }
     except ServerlessError as exc:
+        error = exc.to_dict()
         return {
             "status": "error",
-            "error": exc.to_dict(),
+            "error": error,
+            "error_info": error,
+            "message": error["message"],
             "meta": {"elapsed_ms": int((time.perf_counter() - started) * 1000)},
         }
     except Exception as exc:
@@ -66,6 +69,8 @@ def handler(event: dict[str, Any]) -> dict[str, Any]:
         return {
             "status": "error",
             "error": error,
+            "error_info": error,
+            "message": error["message"],
             "meta": {"elapsed_ms": int((time.perf_counter() - started) * 1000)},
         }
 
