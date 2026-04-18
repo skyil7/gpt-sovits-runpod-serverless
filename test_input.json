@@ -1,0 +1,19 @@
+{
+  "input": {
+    "text": "Hello from RunPod.",
+    "text_lang": "en",
+    "reference_voice": {
+      "source": "url",
+      "url": "https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac",
+      "media_type": "wav",
+      "prompt_text": "I have a dream.",
+      "prompt_lang": "en"
+    },
+    "generation": {
+      "media_type": "wav",
+      "text_split_method": "cut5",
+      "batch_size": 1,
+      "parallel_infer": true
+    }
+  }
+}

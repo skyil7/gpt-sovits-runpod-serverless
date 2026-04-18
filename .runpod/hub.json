@@ -1,0 +1,182 @@
+{
+  "title": "GPT-SoVITS v2ProPlus TTS",
+  "description": "RunPod Serverless worker for GPT-SoVITS v2ProPlus text-to-speech inference with per-request reference voices.",
+  "type": "serverless",
+  "category": "audio",
+  "config": {
+    "runsOn": "GPU",
+    "containerDiskInGb": 40,
+    "gpuCount": 1,
+    "gpuIds": "ADA_24,AMPERE_24,AMPERE_48",
+    "allowedCudaVersions": ["12.4", "12.3", "12.2", "12.1", "12.0"],
+    "presets": [
+      {
+        "name": "Base v2ProPlus",
+        "defaults": {
+          "MODEL_VERSION": "v2ProPlus",
+          "HF_PRETRAINED_REPO_ID": "lj1995/GPT-SoVITS",
+          "HF_PRETRAINED_REVISION": "main",
+          "GPT_WEIGHT_PATH": "s1v3.ckpt",
+          "SOVITS_WEIGHT_PATH": "v2Pro/s2Gv2ProPlus.pth",
+          "OUTPUT_MODE": "base64"
+        }
+      }
+    ],
+    "env": [
+      {
+        "key": "MODEL_VERSION",
+        "value": "v2ProPlus"
+      },
+      {
+        "key": "HF_MODEL_REPO_ID",
+        "input": {
+          "name": "Custom model repo",
+          "type": "string",
+          "description": "Optional Hugging Face repo containing fine-tuned GPT_WEIGHT_PATH and SOVITS_WEIGHT_PATH files.",
+          "default": "",
+          "advanced": false
+        }
+      },
+      {
+        "key": "HF_MODEL_REVISION",
+        "input": {
+          "name": "Custom model revision",
+          "type": "string",
+          "description": "Revision, branch, or commit for HF_MODEL_REPO_ID.",
+          "default": "main",
+          "advanced": true
+        }
+      },
+      {
+        "key": "GPT_WEIGHT_PATH",
+        "input": {
+          "name": "GPT weight path",
+          "type": "string",
+          "description": "Relative path inside HF_MODEL_REPO_ID, or inside HF_PRETRAINED_REPO_ID when no custom repo is set.",
+          "default": "s1v3.ckpt",
+          "advanced": false
+        }
+      },
+      {
+        "key": "SOVITS_WEIGHT_PATH",
+        "input": {
+          "name": "SoVITS weight path",
+          "type": "string",
+          "description": "Relative path inside HF_MODEL_REPO_ID, or inside HF_PRETRAINED_REPO_ID when no custom repo is set.",
+          "default": "v2Pro/s2Gv2ProPlus.pth",
+          "advanced": false
+        }
+      },
+      {
+        "key": "HF_PRETRAINED_REPO_ID",
+        "input": {
+          "name": "Base asset repo",
+          "type": "string",
+          "description": "Hugging Face repo containing v2ProPlus base assets, BERT, CNHuBERT, and SV weights.",
+          "default": "lj1995/GPT-SoVITS",
+          "advanced": true
+        }
+      },
+      {
+        "key": "HF_PRETRAINED_REVISION",
+        "input": {
+          "name": "Base asset revision",
+          "type": "string",
+          "description": "Revision, branch, or commit for HF_PRETRAINED_REPO_ID.",
+          "default": "main",
+          "advanced": true
+        }
+      },
+      {
+        "key": "BERT_MODEL_PATH",
+        "input": {
+          "name": "BERT path",
+          "type": "string",
+          "description": "Relative path to chinese-roberta-wwm-ext-large assets.",
+          "default": "chinese-roberta-wwm-ext-large",
+          "advanced": true
+        }
+      },
+      {
+        "key": "CNHUBERT_MODEL_PATH",
+        "input": {
+          "name": "CNHuBERT path",
+          "type": "string",
+          "description": "Relative path to chinese-hubert-base assets.",
+          "default": "chinese-hubert-base",
+          "advanced": true
+        }
+      },
+      {
+        "key": "SV_MODEL_PATH",
+        "input": {
+          "name": "SV weight path",
+          "type": "string",
+          "description": "Relative path to pretrained_eres2netv2w24s4ep4.ckpt.",
+          "default": "sv/pretrained_eres2netv2w24s4ep4.ckpt",
+          "advanced": true
+        }
+      },
+      {
+        "key": "DEVICE",
+        "input": {
+          "name": "Device",
+          "type": "string",
+          "description": "Torch device for inference.",
+          "default": "cuda",
+          "advanced": true
+        }
+      },
+      {
+        "key": "IS_HALF",
+        "input": {
+          "type": "boolean",
+          "name": "Use fp16",
+          "description": "Use half precision on GPU.",
+          "default": true,
+          "trueValue": "true",
+          "falseValue": "false",
+          "advanced": true
+        }
+      },
+      {
+        "key": "OUTPUT_MODE",
+        "input": {
+          "name": "Output mode",
+          "type": "string",
+          "description": "Return base64 audio or upload to S3-compatible storage.",
+          "options": [
+            {"label": "Base64", "value": "base64"},
+            {"label": "S3 URL", "value": "s3"}
+          ],
+          "default": "base64",
+          "advanced": false
+        }
+      },
+      {
+        "key": "MAX_TEXT_CHARS",
+        "input": {
+          "name": "Max text chars",
+          "type": "number",
+          "description": "Maximum input text length per request.",
+          "min": 1,
+          "max": 10000,
+          "default": 1200,
+          "advanced": true
+        }
+      },
+      {
+        "key": "MAX_REFERENCE_AUDIO_MB",
+        "input": {
+          "name": "Max reference MB",
+          "type": "number",
+          "description": "Maximum size per reference audio input.",
+          "min": 1,
+          "max": 100,
+          "default": 20,
+          "advanced": true
+        }
+      }
+    ]
+  }
+}

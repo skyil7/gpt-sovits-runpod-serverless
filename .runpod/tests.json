@@ -1,0 +1,48 @@
+{
+  "tests": [
+    {
+      "name": "short_english_tts",
+      "input": {
+        "text": "Hello from RunPod.",
+        "text_lang": "en",
+        "reference_voice": {
+          "source": "url",
+          "url": "https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac",
+          "media_type": "wav",
+          "prompt_text": "I have a dream.",
+          "prompt_lang": "en"
+        },
+        "generation": {
+          "media_type": "wav",
+          "text_split_method": "cut5",
+          "batch_size": 1,
+          "parallel_infer": true
+        }
+      },
+      "timeout": 600000
+    }
+  ],
+  "config": {
+    "gpuTypeId": "NVIDIA GeForce RTX 4090",
+    "gpuCount": 1,
+    "env": [
+      {
+        "key": "MODEL_VERSION",
+        "value": "v2ProPlus"
+      },
+      {
+        "key": "HF_PRETRAINED_REPO_ID",
+        "value": "lj1995/GPT-SoVITS"
+      },
+      {
+        "key": "LOAD_MODEL_AT_STARTUP",
+        "value": "true"
+      },
+      {
+        "key": "OUTPUT_MODE",
+        "value": "base64"
+      }
+    ],
+    "allowedCudaVersions": ["12.4", "12.3", "12.2", "12.1", "12.0"]
+  }
+}
