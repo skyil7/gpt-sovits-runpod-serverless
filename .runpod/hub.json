@@ -18,6 +18,8 @@
           "HF_PRETRAINED_REVISION": "main",
           "GPT_WEIGHT_PATH": "s1v3.ckpt",
           "SOVITS_WEIGHT_PATH": "v2Pro/s2Gv2ProPlus.pth",
+          "LOAD_MODEL_AT_STARTUP": "true",
+          "RUNPOD_INIT_TIMEOUT": "900",
           "OUTPUT_MODE": "base64"
         }
       }
@@ -124,6 +126,30 @@
           "type": "string",
           "description": "Torch device for inference.",
           "default": "cuda",
+          "advanced": true
+        }
+      },
+      {
+        "key": "LOAD_MODEL_AT_STARTUP",
+        "input": {
+          "type": "boolean",
+          "name": "Load model at startup",
+          "description": "Load GPT-SoVITS before accepting jobs. Disable only for custom warmup workflows.",
+          "default": true,
+          "trueValue": "true",
+          "falseValue": "false",
+          "advanced": true
+        }
+      },
+      {
+        "key": "RUNPOD_INIT_TIMEOUT",
+        "input": {
+          "name": "Worker init timeout",
+          "type": "number",
+          "description": "Seconds RunPod should allow for cold start and model loading before marking a worker unhealthy.",
+          "min": 60,
+          "max": 3600,
+          "default": 900,
           "advanced": true
         }
       },

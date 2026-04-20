@@ -1,25 +1,11 @@
 {
   "tests": [
     {
-      "name": "short_english_tts",
+      "name": "hub_smoke_healthcheck",
       "input": {
-        "text": "Hello from RunPod.",
-        "text_lang": "en",
-        "reference_voice": {
-          "source": "url",
-          "url": "https://raw.githubusercontent.com/skyil7/gpt-sovits-runpod-serverless/main/examples/reference_librispeech_1272-128104-0000.flac",
-          "media_type": "flac",
-          "prompt_text": "MISTER QUILTER IS THE APOSTLE OF THE MIDDLE CLASSES AND WE ARE GLAD TO WELCOME HIS GOSPEL",
-          "prompt_lang": "en"
-        },
-        "generation": {
-          "media_type": "wav",
-          "text_split_method": "cut5",
-          "batch_size": 1,
-          "parallel_infer": true
-        }
+        "healthcheck": true
       },
-      "timeout": 600000
+      "timeout": 10000
     }
   ],
   "config": {
@@ -36,7 +22,11 @@
       },
       {
         "key": "LOAD_MODEL_AT_STARTUP",
-        "value": "true"
+        "value": "false"
+      },
+      {
+        "key": "RUNPOD_INIT_TIMEOUT",
+        "value": "900"
       },
       {
         "key": "OUTPUT_MODE",

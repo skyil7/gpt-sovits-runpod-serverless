@@ -49,6 +49,16 @@ GPT-SoVITS requires the primary reference audio to be between 3 and 10 seconds.
 Supported languages are GPT-SoVITS v2 languages: `auto`, `auto_yue`, `en`, `zh`,
 `ja`, `yue`, `ko`, `all_zh`, `all_ja`, `all_yue`, and `all_ko`.
 
+For deployment smoke checks that should not load the model, send:
+
+```json
+{
+  "input": {
+    "healthcheck": true
+  }
+}
+```
+
 ## Response
 
 Default `OUTPUT_MODE=base64` returns:
@@ -105,6 +115,7 @@ GPT_SOVITS_ROOT=/opt/GPT-SoVITS
 DEVICE=cuda
 IS_HALF=true
 LOAD_MODEL_AT_STARTUP=true
+RUNPOD_INIT_TIMEOUT=900
 OUTPUT_MODE=base64
 DEFAULT_MEDIA_TYPE=wav
 MAX_TEXT_CHARS=1200

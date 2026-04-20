@@ -31,6 +31,17 @@ def handler(event: dict[str, Any]) -> dict[str, Any]:
     started = time.perf_counter()
     try:
         payload = event.get("input", event)
+        if _is_healthcheck(payload):
+            return {
+                "status": "success",
+                "healthcheck": True,
+                "model_loaded": PIPELINE.loaded,
+                "meta": {
+                    "version": SETTINGS.model_version,
+                    "elapsed_ms": int((time.perf_counter() - started) * 1000),
+                },
+            }
+
         request = parse_job_input(payload, SETTINGS)
         with resolved_reference_audio(request, SETTINGS) as references:
             tts_inputs = request.to_tts_inputs(
@@ -73,6 +84,12 @@ def handler(event: dict[str, Any]) -> dict[str, Any]:
             "message": error["message"],
             "meta": {"elapsed_ms": int((time.perf_counter() - started) * 1000)},
         }
+
+
+def _is_healthcheck(payload: Any) -> bool:
+    return isinstance(payload, dict) and (
+        payload.get("healthcheck") is True or payload.get("mode") == "healthcheck"
+    )
 
 
 if __name__ == "__main__":
